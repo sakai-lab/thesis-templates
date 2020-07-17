@@ -1,0 +1,123 @@
+\documentclass[12pt]{jsbook}
+\usepackage[scaled=.90]{helvet}
+\usepackage[tocindentauto]{tocstyle}
+\setlength{\linewidth}{20em}
+\renewcommand{\contentsname}{\rmfamily Contents}
+\renewcommand{\figurename}{Fig. }
+\renewcommand{\tablename}{Table }
+\makeatletter
+\renewcommand{\@chapapp}{\rmfamily Chapter }
+\renewcommand{\@chappos}{ }
+\makeatother
+\usepackage{pethesis}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{url}
+\usepackage{here}
+
+\title{Your Thesis Title}
+\author{First Name, Last Name}
+\studentid{student id number}
+\affiliation{Waseda University \\ School of Fundamental Science and Engineering \\ Department of Computer Science and Engineering}
+\supervisor{Professor Tetsuya Sakai}
+\thesistype{Master thesis 202X}
+\adjustspace{-100truept}
+\begin{document}
+
+\maketitle
+
+\begin{coverabstract}
+  Write your abstract here.
+\end{coverabstract}
+
+\tableofcontents
+\newpage
+
+\chapter{\rmfamily Introduction} % (fold)
+\label{sec:introduction}
+
+Write your introduction here.
+
+\chapter{\rmfamily Related Work} % (fold)
+\label{sec:related_work}
+
+Related work.\cite{RSL}
+
+\chapter{\rmfamily Proposed Methods} % (fold)
+\label{sec:approach}
+
+\section{\rmfamily section name}
+
+
+\subsection{\rmfamily subsection name}
+
+If you want to put some equations:
+
+\begin{equation}
+  v_c = \frac{\sum^{n}_{i=1} e_{x_i}}{n}
+\end{equation}
+
+\noindent where $e_{x_n}$ is blabla of $x_n$.
+
+\chapter{\rmfamily Experiments} % (fold)
+\label{sec:experiments}
+
+Examples of tables.
+
+\begin{table}[htb]
+  \begin{center}
+    \caption{Environment of Experiments}
+    \begin{tabular}{c|c} \hline
+      CPU & Intel Core i7-6700K \\
+      Memory Size & 32GB  \\
+      GPU & Nvidia GeForce RTX 2080Ti  \\
+      GPU Memory Size & 11GB \\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Overview of datasets}
+    \begin{tabular}{c|c|c|c|c} \hline
+      Datasets & \# of class & Training/test size & Avg. len & Vocab size\\ \hline
+      QCD & 6 & 5452/500 & 9 & 8971\\
+      AG's News & 4 & 120,000/7,600 & 7 & 57089\\
+      MR & 2 & 8530/2132 & 19 & 21404\\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\chapter{\rmfamily Results and Discussions} % (fold)
+\label{sec:results_and_discussions}
+
+Examples of figures.
+
+\begin{figure}[H]
+  \centering
+  \caption{Logo of Waseda Uni.}
+  \includegraphics[width=8cm]{waseda_logo.eps}
+\end{figure}
+
+\chapter{\rmfamily Conclusion} % (fold)
+\label{sec:conclusion}
+
+Conclusions.
+
+\chapter{\rmfamily Future Work}
+
+For future work, ...
+
+\chapter*{\rmfamily Acknowledgements} % (fold)
+\label{sec:acknowledgements}
+
+This research was undertaken with the support from The Real Sakai Laboratory ~\cite{RSL}, Waseda University. I would like to express my thanks of gratitude to members in The Real Sakai Laboratory, who helped me and gave me many useful pieces of advice for continuing the research. Also, I would like to thank Professor Tetsuya Sakai, who gave me this great opportunity and lots of supports to do research on this topic.
+
+\newpage
+
+\bibliographystyle{unsrt}
+    \bibliography{reference} % expects file "reference.bib"
+
+
+\newpage
+
+\end{document}
