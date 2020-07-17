@@ -1,0 +1,181 @@
+%pethesis.sty
+% slightly modified for waseda 2013/12/7
+\typeout{pethesis.sty version 1.3.1 Tue, Sep. 2,  2013 by Takashi Michikawa}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{subfigure}
+ 
+
+% 1inch = 25.4 mm 
+% A4 210mm×297mm 
+%
+% ページの体裁
+%
+\hoffset=0truemm
+\voffset=0truemm
+\textwidth=166truemm %10pt : 172mm
+\textheight=244truemm % 10pt :243mm
+\oddsidemargin=-3.4truemm
+\evensidemargin=-3.4truemm
+\topmargin=-16.4truemm
+% 表紙用の新変数
+\def\thesistype#1{\gdef\@thesistype{#1}}
+\def\title#1{\gdef\@title{#1}}
+\def\studentid#1{\gdef\@studentid{#1}}
+\def\author#1{\gdef\@author{#1}}
+\def\supervisor#1{\gdef\@supervisor{#1}}
+\def\affiliation#1{\gdef\@affiliation{#1}}
+\def\adjustspace#1{\gdef\@adjustspace{#1}}
+
+\def\triplebox{\VerbBox\@triplebox}
+\def\@triplebox#1{%
+  \begingroup
+    \setbox\@fancybox\hbox{{#1}}%
+    \fboxrule=.75\fboxrule
+    \setbox\@fancybox\hbox{\fbox{\box\@fancybox}}%
+    \fboxrule=2\fboxrule
+    \fboxsep=\fboxrule
+    \advance\fboxsep .5pt
+    \fbox{\setlength{\fboxrule}{.9mm}\fbox{\box\@fancybox}}
+  \endgroup}
+  
+\renewcommand\maketitle{
+	\thispagestyle{empty}
+  	\fancypage{\triplebox}
+  	{}
+
+	\begin{center}
+	\vspace*{8truemm}
+	{\gt \@thesistype}\\
+	\vspace*{5truemm}
+	\includegraphics[width=48truemm]{waseda_logo.eps}\\
+	\vspace*{20truemm}
+	        {\gt {\fontsize{26truept}{26pt}\selectfont \@title}} \\
+	\vspace*{82truemm}
+	\vspace*{\@adjustspace}
+ 	{\fontsize{18truept}{18pt}\selectfont Supervisor:\quad \@supervisor}\\
+ 	\vspace*{17truemm}
+ 	\fontsize{16truept}{16pt}\selectfont 
+ 	\@affiliation\\
+ 	\vspace*{6truemm}
+  	{\fontsize{16truept}{16pt}\selectfont Student ID: \@studentid} \\
+ 	\vspace*{9truemm}
+                {\fontsize{20truept}{20pt}\selectfont	\@author}
+ 	\vfill	
+	\end{center} 
+	
+	\newpage
+	\fancypage{}{}
+	\cleardoublepage
+}
+
+%
+% 頭に''概要''と出る
+%
+\newenvironment{coverabstract}{
+\thispagestyle{empty} 
+\vspace*{40truemm} 
+\begin{center} {\bf Abstract}\end{center}
+\begin{minipage}[t]{\textwidth}}{\end{minipage}}
+
+%枠線作成
+%http://www.biwako.shiga-u.ac.jp/sensei/kumazawa/tex/fancyhdrbook.html
+\pagestyle{fancyplain}
+
+%
+% ページヘッダの制御
+%
+\fancyhead{}
+\fancyhead[RO,RE]{\rightmark}
+\fancyhead[LE,LO]{\leftmark}
+\fancyhead[RE]{\gdef\headrulewidth{.4pt}}
+\fancyhead[LO]{\gdef\headrulewidth{.4pt}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\chaptermark}[1]{\markboth{\@chapapp\thechapter\@chappos~#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection #1}{}}
+
+    
+%%jsbook では関連図書となるので変更
+\renewcommand{\bibname}{\rmfamily References}
+
+%% (j)report・(j)book クラスの場合
+%% 参考文献が目次に乗るようにする。
+%%http://www.nsknet.or.jp/~tony/TeX/faq/macro.htm
+%% 
+
+\makeatletter
+\renewenvironment{thebibliography}[1]% 再定義
+{\chapter*{\bibname\@mkboth{\bibname}{\bibname}}%
+ \addcontentsline{toc}{chapter}{\bibname}% この行追加
+   \list{\@biblabel{\@arabic\c@enumiv}}%
+        {\settowidth\labelwidth{\@biblabel{#1}}%
+         \leftmargin\labelwidth
+         \advance\leftmargin\labelsep
+         \@openbib@code
+         \usecounter{enumiv}%
+         \let\p@enumiv\@empty
+         \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+   \sloppy
+   \clubpenalty4000
+   \@clubpenalty\clubpenalty
+   \widowpenalty4000%
+   \sfcode`\.\@m}
+  {\def\@noitemerr
+    {\@latex@warning{Empty `thebibliography' environment}}%
+   \endlist}
+\makeatother
+
+%
+% \chapterの再定義
+%
+\makeatletter
+\renewcommand{\chapter}{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+%   \thispagestyle{plain}% chapter最初のページ番号をフッタ中央に配置
+    \thispagestyle{empty} %chapter最初のページ番号は振らない
+    \global\@topnum\z@
+  \if@english \@afterindentfalse \else \@afterindenttrue \fi
+  \secdef\@chapter\@schapter
+}
+\makeatother
+
+%謝辞
+\makeatletter
+\newenvironment{acknowledgement}{\renewcommand{\chaptermark}[1]{\markboth{謝辞}{}}\chapter*{謝辞}\addcontentsline{toc}{chapter}{謝辞}}
+{}
+\makeatother
+%
+% 章番号とタイトルに改行を入れない
+%http://anchoret.seesaa.net/article/82436197.html
+%
+\makeatletter
+\def\@makechapterhead#1{
+\vspace*{2\Cvs}
+{\parindent \z@ \raggedright \normalfont
+\Huge\headfont
+\ifnum \c@secnumdepth >\m@ne
+\if@mainmatter
+\@chapapp\thechapter\@chappos
+\hskip1zw
+\fi
+\fi
+#1\par\nobreak
+\vskip 3\Cvs}}
+\makeatother
+
+%
+% \tableofcontentsでtocファイル作成時に\subsection まで索引を作成する。
+%
+\setcounter{tocdepth}{2}
+%
+% 索引の見出し、ページ番号のドットの間隔を変更
+%
+\makeatletter
+\renewcommand{\@dotsep}{1} % 9/18 em
+\makeatother
+
+
+
