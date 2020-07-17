@@ -1,0 +1,181 @@
+% csbstp.sty
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%  Written by Toshiharu Sugawara @ Waseda University
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 使い方
+%
+%  \documentstyle[10pt,a4j,twocolumn]{jarticle}
+%  \usepackage{csbstp}
+%  % Add some other packages
+%
+%  \title{日本語のタイトル}
+%  \etitle{英語のタイトル}
+%  %% タイトルが長いときには、\\で２段にします。
+%  \author{氏~~名}
+%  \studentid{学籍番号}
+%  \university{早稲田大学}
+%  \faculty{理工学部}
+%  \department{コンピュータネットワーク工学科}
+%  \advisor{菅原 俊治}
+%  \type{卒業論文}
+%  \nendo{2008}
+%  \hizuke{2009年2月}
+%
+%  \begin{document}
+%  \maketitle
+%
+%  %   以下の２行はオプション
+%  %\large %12ptにしたければ。
+%  %\baselineskip= 16pt %基本的に不要。必要なら調整。
+%
+%  \section{***}
+%  ...
+%  \end{document}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\myleftmargin} \newlength{\mytopmargin}
+\newlength{\mybottommargin} \newlength{\afourheight}
+\newlength{\afourwidth}
+\setlength{\myleftmargin}{14mm}%\addtolength{\myleftmargin}{1pt}
+\setlength{\mytopmargin}{15mm}%\addtolength{\mytopmargin}{1pt}
+\setlength{\mybottommargin}{15mm}%\addtolength{\mybottommargin}{1pt}
+\setlength{\afourheight}{296mm}
+\setlength{\afourwidth}{210mm}
+\setlength{\topmargin}{-1in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\addtolength{\topmargin}{\mytopmargin}
+\setlength{\oddsidemargin}{-1in}
+\addtolength{\oddsidemargin}{\myleftmargin}
+\setlength{\textheight}{\afourheight}
+\setlength{\textwidth}{\afourwidth}
+\addtolength{\textheight}{-\mytopmargin}
+\addtolength{\textheight}{-\mybottommargin}
+\addtolength{\textwidth}{-2\myleftmargin}
+\setlength{\columnsep}{7mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\title#1{\def\@title{#1}}
+\def\author#1{\def\@author{#1}}
+\def\university#1{\def\@university{#1}}
+\def\faculty#1{\def\@faculty{#1}}
+\def\department#1{\def\@department{#1}}
+\def\etitle#1{\def\@etitle{#1}}
+\def\advisor#1{\def\@advisor{#1}}
+\def\nendo#1{\def\@nendo{#1}}
+\def\studentid#1{\def\@studentid{#1}}
+\def\hizuke#1{\def\@hizuke{#1}}
+\def\type#1{\def\@type{#1}}
+\def\email#1{\def\@email{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\maketitle}{\par
+ \begingroup
+  \renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+  \def\@makefnmark{\hbox{\ifydir $\m@th^{\@thefnmark}$
+    \else\hbox{\yoko$\m@th^{\@thefnmark}$}\fi}}%
+   \long\def\@makefntext##1{\parindent 1em\noindent
+     \hbox to1.8em{\hss$\m@th^{\@thefnmark}$}##1}%
+  \if@twocolumn
+    \ifnum \col@number=\@ne \@maketitle
+    \else \twocolumn[\@maketitle]%
+    \fi
+  \else
+    \newpage
+    \global\@topnum\z@   % Prevents figures from going at top of page.
+    \@maketitle
+  \fi
+%  \thispagestyle{jpl@in}\@thanks
+\endgroup
+\setcounter{footnote}{0}%
+\global\let\thanks\relax
+\global\let\maketitle\relax
+\global\let\p@thanks\relax
+\global\let\@thanks\@empty
+\global\let\@author\@empty
+\global\let\@date\@empty
+\global\let\@title\@empty
+\global\let\title\relax
+\global\let\author\relax
+\global\let\date\relax
+\global\let\and\relax
+}
+
+\def\@maketitle{%
+\newpage\null
+\vspace*{-5mm}%
+\begin{center}%
+ {\Huge 卒\ 業\ 論\ 文\ 概\ 要\ 書\vspace{-3mm}}%
+ {\large \flushright CD\par%
+\vspace{-1mm}\hspace{-4.1cm}\@hizuke 提出　\hfil 学籍番号\ \ \underline{\@studentid}\par%
+\begin{tabular}{!{\Tvline} m{1.05cm}|m{5mm}|m{3.5cm}|m{1.05cm}|m{3.6cm}|m{1.1cm}|m{4.4cm} !{\Tvline}}%
+\Thline
+\multicolumn{2}{!{\Tvline}m{2cm}|}{\centering \vspace{7mm}学科名\vspace{7mm}} & \minip{5}{\@department} & 氏\ 名 & \@author & \minip{1.1}{\centering 指 導\\[1mm]教 員} & \@advisor \\%
+\hline
+\minip{1.0}{\centering \vspace{2.8mm}研 究\\題 目\vspace{.8mm}} & \multicolumn{6}{|m{14cm}!{\Tvline}}{\minip{14}{\@title}}\\%
+\Thline%
+\end{tabular}%
+}%
+\end{center}%
+\par\vskip -.3em}
+
+\def\minip#1#2{\begin{minipage}[b]{#1cm}#2\end{minipage}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change Sectiontitle 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+   {.3\Cvs \@plus.2\Cdp \@minus.2\Cdp}%
+   {.1\Cvs \@plus.1\Cdp}%
+   {\reset@font\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+   {0.2\Cvs \@plus.05\Cdp \@minus.1\Cdp}%
+   {0.01\Cvs \@plus.01\Cdp}%
+   {\reset@font\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+   {0.15\Cvs \@plus.1\Cdp \@minus.1\Cdp}%
+   {0.01\Cvs \@plus.01\Cdp}%
+   {\reset@font\normalsize\bfseries}}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+   {1.5ex \@plus .2ex \@minus .2ex}%
+   {-1em}%
+   {\reset@font\normalsize\bfseries}}
+\renewcommand{\subparagraph}{\@startsection{subparagraph}{5}{\z@}%
+   {1.5ex \@plus .2ex \@minus .2ex}%
+   {-1em}%
+   {\reset@font\normalsize\bfseries}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{array}
+\usepackage{multirow}
+\def\Thline{\noalign{\hrule height1.5pt}}% \adjheight{1.5pt}}%
+\def\Tvline{\vrule width 1.5pt}
+
+
+%%%% Initialization 
+\title{タイトル：何か書いてください}
+\author{}
+\date{}
+\etitle{}
+\university{早稲田大学}
+\studentid{書くこと}
+\hizuke{}
+\type{卒業論文}
+\faculty{理工学部}
+\department{コンピュータネットワーク工学科}
+\advisor{菅原 俊治}
+\type{卒業論文}
+\nendo{2008}
+\pagestyle{empty}
+
+\setlength\floatsep{1pt}
+\setlength\textfloatsep{3pt}
+\setlength\intextsep{0pt}
+\setlength\abovecaptionskip{3pt}
+%%% End of LaTeX style file
+   

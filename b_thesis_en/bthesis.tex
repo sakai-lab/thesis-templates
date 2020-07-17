@@ -1,0 +1,128 @@
+\documentclass[12pt]{jsbook}
+\usepackage[scaled=.90]{helvet}
+\usepackage[tocindentauto]{tocstyle}
+\setlength{\linewidth}{20em}
+\renewcommand{\contentsname}{\rmfamily Contents}
+\renewcommand{\figurename}{Fig. }
+\renewcommand{\tablename}{Table }
+\makeatletter
+\renewcommand{\@chapapp}{\rmfamily Chapter }
+\renewcommand{\@chappos}{ }
+\makeatother
+\usepackage{pethesis}
+\usepackage{graphicx}
+
+
+\title{Your Thesis Title}
+\author{First Name, Last Name}
+\studentid{1w123456-7}
+\affiliation{Waseda University \\ School of Fundamental Science and Engineering \\ Department of Computer Science and Engineering}
+\supervisor{Tetsuya Sakai}
+\thesistype{Bachelor thesis 202X}
+\adjustspace{-100truept}
+\begin{document}
+
+\maketitle
+
+\begin{coverabstract}
+  Write your abstract here.
+\end{coverabstract}
+
+\tableofcontents
+\newpage
+
+\chapter{\rmfamily Introduction} % (fold)
+\label{sec:introduction}
+
+Introduction.
+
+\chapter{\rmfamily Related Work} % (fold)
+\label{sec:related_work}
+
+Related work.\cite{RSL}
+
+\section{\rmfamily Section Name} % (fold)
+\label{sub:section name}
+
+
+\chapter{\rmfamily Approach} % (fold)
+\label{sec:approach}
+
+In this Chapter, the detail of the proposed model is introduced.
+
+An example of inserting an equation.
+
+\begin{equation}
+  loss = -\sum_{i}{}\log (y_i)L_i
+\end{equation}
+
+where $y_i$ is ..., and $L_i$ ...
+
+An example of inserting a figure.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=10cm]{waseda_logo.eps}
+  \caption{WASEDA LOGO}
+  \label{logo}
+\end{figure}
+
+
+\chapter{\rmfamily Experiments} % (fold)
+\label{sec:experiments}
+
+An example of inserting a table.
+
+\begin{table}[h]
+  \begin{center}
+    \label{environment}
+    \caption{Environment of experiments}
+    \begin{tabular}{c|c} \hline
+      　  Item & Value \\ \hline \hline
+      CPU & Intel Core i7-6700K \\
+      Memory size & 32GB \\
+      GPU & Nvidia GeForce GTX 1070 \\
+      GPU memory size & 8GB \\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
+\chapter{\rmfamily Results and Discussions} % (fold)
+\label{sec:results_and_discussions}
+
+The results obtained in the experiments are given in this chapter. Following this, the analysis of the results are presented.
+
+\section{Results}
+\label{sub:results}
+
+\newpage
+\section{Discussions}
+\label{Discussions}
+
+\chapter{\rmfamily Conclusion} % (fold)
+\label{sec:conclusion}
+
+In this paper, ...
+
+In conclusion, ...
+
+\chapter{\rmfamily Future Work} % (fold)
+\label{sec:future_work}
+
+For future work, ...
+
+\chapter*{\rmfamily Acknowledgements} % (fold)
+\label{sec:acknowledgements}
+This research was undertaken with the support from The Real Sakai Laboratory \cite{RSL}, Waseda University. I would like to express my thanks of gratitude to members in The Real Sakai Laboratory, who helped me and gave me many useful pieces of advice for continuing the research. Also, I would like to thank Professor Tetsuya Sakai, who gave me this great opportunity and lots of supports to do research on this topic.
+
+\newpage
+
+\bibliographystyle{unsrt}
+    \bibliography{reference} % expects file "reference.bib"
+
+
+\newpage
+
+\end{document}
