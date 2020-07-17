@@ -1,0 +1,54 @@
+\documentclass[10pt,a4j,twocolumn]{jsarticle}
+\usepackage{csbstp}
+
+\usepackage[dvipdfmx]{graphicx}
+\graphicspath{{./img/}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{here}
+\usepackage{tabularx}
+\usepackage{longtable}
+\newcommand{\jump}[1]{\ensuremath{[\![#1]\!]} }
+\renewcommand{\figurename}{Fig. }
+\renewcommand{\tablename}{Table }
+
+% define argmax & argmin
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\title{Your Thesis Title}
+\author{Your Name}
+\studentid{Student ID}
+\university{早稲田大学}%省略可
+\faculty{基幹理工学部}%省略可
+\department{\footnotesize Computer~Science\\and~Communications\\Engineering}%省略可
+\guidance{~Information\\Access}
+\type{修士論文}%省略可
+\nendo{202X}
+\hizuke{mm/dd/202X}
+\advisor{Tetsuya Sakai}
+
+\begin{document}
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\renewcommand{\baselinestretch}{0.9}
+\maketitle
+
+\section{Abstract}
+Write your abstract here.\cite{RSL}
+
+\section{Proposed Methods}
+
+\subsection{\rmfamily blablabla}
+
+\section{Experimental Results and Discussions}
+
+\section{Conclusions}
+
+\small
+\bibliographystyle{abbrv}
+\bibliography{abs}
+
+\end{document}
