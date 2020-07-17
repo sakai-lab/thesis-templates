@@ -10,35 +10,22 @@ Here is an example of `settings.json`.
 
 ```json
 {
-    // ---------- Language ----------
-
     "[tex]": {
-        // スニペット補完中にも補完を使えるようにする
         "editor.suggest.snippetsPreventQuickSuggestions": false,
-        // インデント幅を2にする
         "editor.tabSize": 2
     },
 
     "[latex]": {
-        // スニペット補完中にも補完を使えるようにする
         "editor.suggest.snippetsPreventQuickSuggestions": false,
-        // インデント幅を2にする
         "editor.tabSize": 2
     },
 
     "[bibtex]": {
-        // インデント幅を2にする
         "editor.tabSize": 2
     },
 
-
-    // ---------- LaTeX Workshop ----------
-
-    // 使用パッケージのコマンドや環境の補完を有効にする
     "latex-workshop.intellisense.package.enabled": true,
 
-    // 生成ファイルを削除するときに対象とするファイル
-    // デフォルト値に "*.synctex.gz" を追加
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux",
         "*.bbl",
@@ -65,10 +52,8 @@ Here is an example of `settings.json`.
         "*.synctex.gz"
     ],
 
-    // 生成ファイルを "out" ディレクトリに吐き出す
     "latex-workshop.latex.outDir": "out",
 
-    // ビルドのレシピ
     "latex-workshop.latex.recipes": [
         {
             "name": "latexmk",
@@ -78,7 +63,6 @@ Here is an example of `settings.json`.
         },
     ],
 
-    // ビルドのレシピに使われるパーツ
     "latex-workshop.latex.tools": [
         {
             "name": "latexmk",
