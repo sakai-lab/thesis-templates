@@ -1,0 +1,80 @@
+% この2行はいじらないでください。
+\documentclass[12pt,dvipdfmx]{jsbook}
+\usepackage{pethesis}
+
+\usepackage[dvipdfmx]{graphicx}
+\graphicspath{{./img/}}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{here}
+\newcommand{\jump}[1]{\ensuremath{[\![#1]\!]} }
+\usepackage{colortbl}
+%
+% 論文の表紙の項目
+%
+\thesistype{令和X年度 卒業論文}
+\title{論文のタイトル}
+\etitle{ }
+\adjustspace{-100truept} %% 日本語タイトルが２行にわたる場合 -26truept / 英語タイトルが２行にわたる場合 -18truept を入れる  
+\affiliation{早稲田大学基幹理工学部情報理工学科}
+\supervisor{酒井 哲也 教授}
+\studentid{1w123456-7}
+\author{氏名}
+\begin{document}
+%表紙
+\maketitle
+
+%概要
+%TODO: 論文の概要をここに書きます。
+\begin{coverabstract}
+
+\end{coverabstract}
+
+%目次
+\tableofcontents
+% %図目次
+% \listoffigures
+% %表目次
+% \listoftables
+
+\vspace*{1cm}\par
+%MEMO: chapter -> sectionの順で書いていく
+\chapter{導入}
+\label{sec:introduction}
+導入
+
+\chapter{関連研究}
+\label{sec:related_work}
+関連研究\cite{RSL}
+
+\chapter{評価実験}
+\begin{equation}
+    loss = -\sum{i}{}\log (y_i)L_i
+\end{equation}
+ただし，$y_i$は...，$L_i$は...．
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=10cm]{waseda_logo.eps}
+  \caption{WASEDA LOGO}
+  \label{logo}
+\end{figure}
+
+\chapter{問題点と解決提案手法}
+
+\chapter*{謝辞}
+本論文の執筆にあたり、様々なご指導，ご支援をして頂いた指導教員の酒井哲也准教授に深く感謝いたします．また，貴重なご意見，ご提案を頂いた酒井研究室の同級生にもお礼申し上げます．
+\newpage
+
+\bibliographystyle{unsrt}
+    \bibliography{reference} %"reference.bib"から読み込む
+
+\newpage
+
+%
+% 論文の最後
+%
+\end{document}
