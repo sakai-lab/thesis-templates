@@ -1,0 +1,105 @@
+% この2行はいじらないでください。
+\documentclass[12pt,dvipdfmx]{jsbook}
+\usepackage{pethesis} % 修論用テンプレート
+
+\usepackage[dvipdfmx]{graphicx}
+\graphicspath{{./figures/}}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{here}
+\newcommand{\jump}[1]{\ensuremath{[\![#1]\!]} }
+\usepackage{colortbl}
+\usepackage{appendix}
+\usepackage{siunitx}
+
+% 図を簡単に挿入するためのマクロ
+% Usage: \insertfigure{ファイル名}{キャプション}{ラベル}{includegraphicsのオプション}
+\newcommand{\insertfigure}[4]{
+    \begin{figure}[H]
+    \centering
+    \includegraphics[#4]
+        {#1}
+    \caption{#2}
+    \label{#3}
+\end{figure}
+}
+
+%
+% 論文の表紙の項目
+%
+\thesistype{令和N年度 修士論文}
+\title{日本語タイトル}
+\etitle{English title}
+\adjustspace{0truept} %% 日本語タイトルが２行にわたる場合 -35 する/ 英語タイトルが２行にわたる場合 -22 する
+\affiliation{早稲田大学大学院 基幹理工学研究科 情報理工・情報通信専攻}
+\supervisor{酒井 哲也 教授}
+\researchname{情報アクセス研究}
+\studentid{51XXFXXX}
+\author{氏名}
+\submitdate{202X年X月XX日}
+
+\begin{document}
+%表紙
+
+\maketitle
+
+%概要
+\begin{coverabstract}
+論文の概要をここに書きます．
+\end{coverabstract}
+
+%目次
+\tableofcontents
+% %図目次
+% \listoffigures
+% %表目次
+% \listoftables
+
+\vspace*{1cm}\par
+% MEMO: chapter -> sectionの順で書いていく
+\chapter{導入}
+\label{sec:introduction}
+導入
+
+\chapter{関連研究}
+\label{sec:related_work}
+関連研究\cite{RSL}
+
+\chapter{評価実験}
+\begin{equation}
+    loss = -\sum{i}{}\log (y_i)L_i
+\end{equation}
+ただし，$y_i$は...，$L_i$は...．
+
+\insertfigure{waseda_logo}{WASEDA LOGO}{fig:logo_1}{width=3cm}
+図\ref{fig:logo_1}と図\ref{fig:logo_2}は全くの等価．
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=3cm]{waseda_logo.eps}
+  \caption{WASEDA LOGO}
+  \label{fig:logo_2}
+\end{figure}
+
+\chapter{問題点と解決提案手法}
+
+\chapter*{謝辞}
+本論文の執筆にあたり，様々なご指導，ご支援をして頂いた指導教員の酒井哲也教授に深く感謝いたします．また，貴重なご意見，ご提案を頂いた酒井研究室の同級生にもお礼申し上げます．
+\newpage
+
+\bibliographystyle{unsrt}
+    \bibliography{reference} %"reference.bib"から読み込む
+
+% 付録ここから
+% 必要なければ削除
+\appendix
+\chapter{実験結果詳細}
+
+\newpage
+
+%
+% 論文の最後
+%
+\end{document}
