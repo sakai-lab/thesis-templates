@@ -1,128 +1,74 @@
-\documentclass[12pt]{jsbook}
-\usepackage[scaled=.90]{helvet}
-\usepackage[tocindentauto]{tocstyle}
-\setlength{\linewidth}{20em}
-\renewcommand{\contentsname}{\rmfamily Contents}
-\renewcommand{\figurename}{Fig. }
-\renewcommand{\tablename}{Table }
-\makeatletter
-\renewcommand{\@chapapp}{\rmfamily Chapter }
-\renewcommand{\@chappos}{ }
-\makeatother
+% Compile with pLaTeX via latexmk; see README.md.
+\documentclass[a4paper,12pt,english,twoside,openany,dvipdfmx]{jsbook}
 \usepackage{pethesis}
-\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
 
-
-\title{Your Thesis Title}
+% Edit all cover information here. The institutional wording follows the
+% original cover; confirm it against your programme's submission requirements.
+\title{Evaluating Information Access Systems:\\An Undergraduate Thesis Demonstration}
 \author{First Name, Last Name}
 \studentid{1w123456-7}
-\affiliation{Waseda University \\ School of Fundamental Science and Engineering \\ Department of Computer Science and Engineering}
+\affiliation{Waseda University\\School of Fundamental Science and Engineering\\Department of Computer Science and Engineering}
 \supervisor{Tetsuya Sakai}
-\thesistype{Bachelor thesis 202X}
-\adjustspace{-100truept}
-\begin{document}
+\thesistype{Bachelor's Thesis 202X}
 
+% The following text and numerical examples demonstrate layout only.
+% They are not research findings and must be replaced before submission.
+\begin{document}
 \maketitle
 
 \begin{coverabstract}
-  Write your abstract here.
+This document demonstrates the updated English undergraduate thesis template using
+an illustrative study of information access systems. It contains a research
+question, a proposed evaluation procedure, example tables, a mathematical
+definition, and a discussion of limitations. All numerical results are invented
+for typesetting purposes. The journal and conference references are also
+explicitly fictional examples, rather than evidence for the statements below.
+
+The layout separates chapter-opening pages from continuation pages. Each chapter
+begins on a fresh page with a centred page number and no running header. Later
+pages retain alternating chapter and section headers. Chapters may begin on
+an odd or even page, so no empty page is inserted merely to reach a right-hand
+page. The first chapter includes two continuation pages to make both running
+header positions visible. The remaining chapters contain a continuation page
+for comparison. These demonstration page breaks can be removed when writing
+an actual thesis.
+
+The example also demonstrates a table of contents,
+cross-references, acknowledgements, a bibliography and an appendix. Together,
+these elements provide a practical document for reviewing margins, heading
+hierarchy, caption placement and continuous page numbering.
 \end{coverabstract}
 
 \tableofcontents
-\newpage
 
-\chapter{\rmfamily Introduction} % (fold)
-\label{sec:introduction}
+% Example files only: remove these inputs and write your thesis directly here.
+\input{chapters/01-introduction}
+\input{chapters/02-related-work}
+\input{chapters/03-methods}
+\input{chapters/04-experiments}
+\input{chapters/05-results}
+\input{chapters/06-conclusion}
+\input{chapters/07-future-work}
 
-Introduction.
+\begin{acknowledgement}
+This page is a formatting example for acknowledgements. In a completed thesis,
+it should identify the people and organisations whose contributions supported
+the work. The wording should distinguish academic advice, technical assistance,
+financial support and personal encouragement where appropriate.
 
-\chapter{\rmfamily Related Work} % (fold)
-\label{sec:related_work}
-
-Related work.\cite{RSL}
-
-\section{\rmfamily Section Name} % (fold)
-\label{sub:section name}
-
-
-\chapter{\rmfamily Approach} % (fold)
-\label{sec:approach}
-
-In this Chapter, the detail of the proposed model is introduced.
-
-An example of inserting an equation.
-
-\begin{equation}
-  loss = -\sum_{i}{}\log (y_i)L_i
-\end{equation}
-
-where $y_i$ is ..., and $L_i$ ...
-
-An example of inserting a figure.
-
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=10cm]{waseda_logo.eps}
-  \caption{WASEDA LOGO}
-  \label{logo}
-\end{figure}
-
-
-\chapter{\rmfamily Experiments} % (fold)
-\label{sec:experiments}
-
-An example of inserting a table.
-
-\begin{table}[h]
-  \begin{center}
-    \label{environment}
-    \caption{Environment of experiments}
-    \begin{tabular}{c|c} \hline
-      　  Item & Value \\ \hline \hline
-      CPU & Intel Core i7-6700K \\
-      Memory size & 32GB \\
-      GPU & Nvidia GeForce GTX 1070 \\
-      GPU memory size & 8GB \\ \hline
-    \end{tabular}
-  \end{center}
-\end{table}
-
-
-\chapter{\rmfamily Results and Discussions} % (fold)
-\label{sec:results_and_discussions}
-
-The results obtained in the experiments are given in this chapter. Following this, the analysis of the results are presented.
-
-\section{Results}
-\label{sub:results}
-
-\newpage
-\section{Discussions}
-\label{Discussions}
-
-\chapter{\rmfamily Conclusion} % (fold)
-\label{sec:conclusion}
-
-In this paper, ...
-
-In conclusion, ...
-
-\chapter{\rmfamily Future Work} % (fold)
-\label{sec:future_work}
-
-For future work, ...
-
-\chapter*{\rmfamily Acknowledgements} % (fold)
-\label{sec:acknowledgements}
-This research was undertaken with the support from The Real Sakai Laboratory \cite{RSL}, Waseda University. I would like to express my thanks of gratitude to members in The Real Sakai Laboratory, who helped me and gave me many useful pieces of advice for continuing the research. Also, I would like to thank Professor Tetsuya Sakai, who gave me this great opportunity and lots of supports to do research on this topic.
-
-\newpage
+Replace this paragraph with your own acknowledgements. Do not retain invented
+funding information or imply that an individual endorsed the conclusions of
+your thesis. This unnumbered chapter is included in the table of contents and
+uses the same opening-page style as the numbered chapters: a visible footer
+page number, with no running header or horizontal header rule.
+\end{acknowledgement}
 
 \bibliographystyle{unsrt}
-    \bibliography{reference} % expects file "reference.bib"
+\bibliography{reference}
 
-
-\newpage
-
+\appendix
+\input{chapters/appendix-details}
 \end{document}

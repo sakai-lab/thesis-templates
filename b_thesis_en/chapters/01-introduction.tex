@@ -1,0 +1,97 @@
+\chapter{Introduction}
+\label{sec:introduction}
+
+\section{Background and Motivation}
+Information access systems help users locate material that is relevant to a
+question or task. A search interface may return a ranked list of documents,
+while another interface may combine retrieved passages into a short answer.
+In either case, evaluation begins with a clear account of the user need and
+the evidence that would satisfy it. A system that retrieves useful material
+for one type of question may perform differently when the vocabulary, topic,
+or expected level of detail changes.
+
+This illustrative thesis considers how to compare two retrieval configurations
+under a shared evaluation procedure. The purpose of the example is to provide
+realistic paragraph lengths and document structure for checking the template.
+It does not report a completed experiment. Any statements about the example
+systems describe the proposed study design, and the numerical values shown
+later are invented. Keeping this distinction explicit also demonstrates how
+a thesis can separate an experimental plan from observed results.
+
+\section{Research Questions}
+The example asks whether an additional reranking stage improves the usefulness
+of the first few retrieved documents, and whether any improvement is consistent
+across different query groups. These are separate questions. An increase in an
+overall mean does not establish that every group benefits, because the mean
+can combine gains on some queries with losses on others. The evaluation must
+therefore retain query-level observations as well as summary values.
+
+The main comparison uses the same collection, queries and relevance judgements
+for both configurations. Only the ranking procedure changes. This restriction
+makes the comparison easier to interpret, although it does not eliminate all
+sources of uncertainty. Later chapters discuss judgement coverage, parameter
+selection and the limits of a small evaluation collection.
+
+% Demonstration-only break: expose an ordinary continuation page.
+\newpage
+\section{Scope and Contributions}
+\label{sec:scope}
+The intended contribution of this example study is an explicit and reproducible
+comparison procedure. A useful report should explain how the input collection
+was prepared, how queries were selected, which settings were held constant,
+and how per-query scores were aggregated. The reader should be able to trace
+a value in a results table back to the observations and choices that produced
+it. A single headline score is not a substitute for this account.
+
+Three outputs are envisaged. The first is a documented baseline configuration.
+The second is a controlled variant that introduces a reranking stage. The third
+is an analysis that considers both average performance and variation across
+queries. These outputs are described as a plan, not as completed research
+contributions. In a real thesis, this section should be rewritten to reflect
+what was actually implemented and established by the evidence.
+
+\subsection{Assumptions}
+The example assumes that each query has a fixed information need and that the
+available judgements are used consistently for both systems. It also assumes
+that the collection remains unchanged during the experiment. These assumptions
+simplify the comparison, but they limit the conclusions: an offline experiment
+does not directly establish how people would use the system in a live setting.
+The distinction should remain visible when reporting the results.
+
+\subsection{Reading the Example}
+The document includes both numbered chapters and unnumbered back matter.
+Tables and figures have independent numbering, and references to them are
+resolved automatically. For example, Chapter~\ref{sec:experiments} describes the
+experimental design, while Appendix~\ref{app:details} lists the information
+needed to reproduce it. These references should remain correct after material
+is added or removed.
+
+% A second continuation page exposes the other odd/even running header.
+\newpage
+\section{Organisation of the Thesis}
+Chapter~\ref{sec:related_work} explains how to organise related work around the
+decisions made in an evaluation. Chapter~\ref{sec:approach} then defines the
+illustrative comparison and its aggregation rule. The experimental chapter
+provides example tables, and Chapter~\ref{sec:results_and_discussions} shows how
+to discuss an invented result without presenting it as an empirical finding.
+The final chapters distinguish conclusions from possible extensions.
+
+This organisation places the study design before the results. That order helps
+the reader determine which decisions were part of the original procedure and
+which interpretations arose afterwards. A complete thesis may need additional
+chapters for implementation, datasets or user studies. The template does not
+require every project to follow the particular chapter structure used here.
+
+\section{Layout Inspection}
+On this continuation page, the running header should identify the current
+chapter or section, according to page parity. The footer should display the
+page number in the same horizontal position as on the chapter-opening page.
+The opening page itself should have no running header and no header rule.
+This first chapter has three pages so that both ordinary header positions can
+be inspected without changing the source.
+
+The next chapter begins on the immediately following page. Its page number
+may be even or odd; no empty page is required between chapters. The forced
+page breaks within these sample chapters are solely for demonstrating page
+styles. During normal writing, paragraphs flow automatically and each
+\verb|\chapter| command starts a new page on its own.

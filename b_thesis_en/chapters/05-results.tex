@@ -1,0 +1,70 @@
+\chapter{Results and Discussions}
+\label{sec:results_and_discussions}
+
+\section{Illustrative Results}
+All values in Table~\ref{tab:results} are invented for layout inspection. They
+must not be interpreted as measured performance. In this numerical example,
+the variant has a larger mean in both groups, but the difference is larger
+for short requests. Because the groups have equal size in the example design,
+the overall means are the simple averages of the two group means.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Invented scores used only to demonstrate results formatting}
+  \label{tab:results}
+  \begin{tabular}{lrrr}\hline
+    Query group & Baseline & Variant & Difference\\\hline
+    Short requests & 0.420 & 0.460 & +0.040\\
+    Detailed requests & 0.380 & 0.390 & +0.010\\
+    Overall & 0.400 & 0.425 & +0.025\\\hline
+  \end{tabular}
+\end{table}
+
+A real discussion would report the uncertainty of the comparison and connect
+it to the research questions. It should avoid describing a numerical increase
+as a reliable improvement without the evidence needed for that statement.
+The size of a change also needs practical interpretation: a difference may
+be observable in an offline score without noticeably changing the usefulness
+of the system for its intended users.
+
+% Demonstration-only break: keep the image with discussion on a continuation page.
+\clearpage
+\section{Figure Example}
+Figure~\ref{fig:logo} demonstrates a centred image with its caption below it.
+The image is the existing template logo and conveys no experimental result.
+In a completed thesis, replace it with a relevant figure and explain what the
+reader should learn from it in the surrounding text.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=5cm]{waseda_logo.pdf}
+  \caption{Waseda University logo, included as a formatting example}
+  \label{fig:logo}
+\end{figure}
+
+\section{Interpreting Differences}
+An aggregate result can conceal different query-level patterns. Some queries
+may benefit from a reranking stage while others lose a relevant document near
+the top of the list. Inspecting the paired scores helps identify these cases,
+but the interpretation should be grounded in the retrieved material rather
+than inferred from the sign of the score difference alone.
+
+The discussion should distinguish observations from possible explanations.
+For example, a query might contain terminology that appears in several
+unrelated contexts. A retrieved document can reveal such an ambiguity, but
+that single case does not establish a general failure mode. Additional cases
+or a targeted experiment would be needed to support a broader claim.
+
+\section{Limitations}
+The illustrative design has several limitations. A fixed collection may not
+reflect changes in language or document availability. Incomplete relevance
+judgements may leave some useful documents unrecognised by the evaluation.
+A small query set may also give an unstable picture of group-level behaviour.
+Each limitation affects the scope of the conclusion in a different way.
+
+A useful limitations section explains those effects rather than merely listing
+potential problems. It should identify which conclusions remain supported,
+which are tentative and which would require a new experiment. Since this
+chapter contains no real observations, its only conclusion is about how a
+results discussion can be structured. The following chapter preserves that
+boundary when summarising the example.

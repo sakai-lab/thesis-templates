@@ -1,0 +1,68 @@
+\chapter{Proposed Methods}
+\label{sec:approach}
+
+\section{System Overview}
+The example compares a baseline retrieval configuration with a variant that
+reranks an initial candidate set. Both configurations receive the same query
+and search the same collection. The baseline returns its initial ordering,
+whereas the variant applies an additional scoring function to the candidates.
+Documents outside that candidate set cannot be promoted by the reranker, which
+makes candidate selection an important part of the experimental description.
+
+The implementation should record the candidate-set size, preprocessing rules,
+and treatment of tied scores. These details can change the output even when
+the high-level method name remains the same. Configuration files and software
+versions should be saved with the result files. The appendix provides an
+example checklist for this record, rather than prescribing a particular
+software framework.
+
+\section{Aggregation of Query Scores}
+Let $s_i$ denote a selected evaluation score for query $i$, with $n$ queries
+included in the comparison. The mean score is
+\begin{equation}
+  \label{eq:mean}
+  \bar{s} = \frac{1}{n}\sum_{i=1}^{n}s_i.
+\end{equation}
+Equation~\eqref{eq:mean} assigns equal weight to each query. A different weighting
+scheme would answer a different question and should be stated explicitly.
+The metric used to obtain $s_i$ must also be defined; the aggregation formula
+alone does not specify how relevance, rank or unjudged documents are handled.
+
+The example retains both the mean and the individual scores. This allows the
+analysis to distinguish a small improvement shared by many queries from a
+large improvement concentrated in only a few cases. Neither pattern can be
+reconstructed from the mean alone.
+
+% Demonstration-only break.
+\newpage
+\section{Paired Comparison}
+For each query, define the difference between the variant and baseline scores
+using the same relevance judgements. Pairing the observations removes ambiguity
+about which queries contributed to each system's mean. If a query is excluded,
+the reason should be documented and the exclusion should be applied
+consistently to both configurations.
+
+A useful result file contains the query identifier, both scores and their
+difference. Additional fields may describe the query group or judgement
+coverage. These annotations support later analysis, but they should not be
+chosen merely because they produce a favourable comparison. Decisions about
+groups and exclusions belong in the experimental design wherever possible.
+
+\subsection{Quality Checks}
+Before aggregation, check for duplicate identifiers, missing outputs and
+unexpected score ranges. The comparison should fail visibly when a required
+system output is absent. Replacing an absent output with a score of zero may
+be appropriate in some protocols, but it must be an explicit evaluation rule,
+not an accidental consequence of a file-reading routine.
+
+\section{Reproducibility}
+The final report should distinguish deterministic settings from operations
+that depend on a random seed. If repeated runs are used, explain what changes
+between runs and how the resulting observations are summarised. Saving a seed
+without recording the software and data versions is not a complete description
+of the experimental environment.
+
+The procedure should be checked on a small example before applying it to the
+full collection. Manually inspecting a few query-level calculations can reveal
+mismatched identifiers or inconsistent cutoffs. This check complements, rather
+than replaces, automated validation of the complete result files.
