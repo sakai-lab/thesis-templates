@@ -1,40 +1,15 @@
-% この2行はいじらないでください。
-\documentclass[12pt,dvipdfmx]{jsbook}
-\usepackage{pethesis} % 修論用テンプレート
-
-\usepackage[dvipdfmx]{graphicx}
-\graphicspath{{./figures/}}
-\usepackage{fancybox}
+% Compile with pLaTeX via latexmk; see README.md.
+\documentclass[a4paper,12pt,twoside,openany,dvipdfmx]{jsbook}
+\usepackage{pethesis}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{multirow}
 \usepackage{url}
-\usepackage{here}
-\newcommand{\jump}[1]{\ensuremath{[\![#1]\!]} }
-\usepackage{colortbl}
-\usepackage{appendix}
-\usepackage{siunitx}
 
-% 図を簡単に挿入するためのマクロ
-% Usage: \insertfigure{ファイル名}{キャプション}{ラベル}{includegraphicsのオプション}
-\newcommand{\insertfigure}[4]{
-    \begin{figure}[H]
-    \centering
-    \includegraphics[#4]
-        {#1}
-    \caption{#2}
-    \label{#3}
-\end{figure}
-}
-
-%
-% 論文の表紙の項目
-%
+% Edit all cover information here. Confirm the institutional wording before submission.
 \thesistype{令和N年度 修士論文}
-\title{日本語タイトル}
-\etitle{English title}
-\adjustspace{0truept} %% 日本語タイトルが２行にわたる場合 -35 する/ 英語タイトルが２行にわたる場合 -22 する
-\affiliation{早稲田大学大学院 基幹理工学研究科 情報理工・情報通信専攻}
+\title{情報アクセスシステムの評価\\修士論文の書式確認用サンプル}
+\etitle{Evaluating Information Access Systems:\\A Thesis Formatting Demonstration}
+\affiliation{早稲田大学大学院 基幹理工学研究科\\情報理工・情報通信専攻}
 \supervisor{酒井 哲也 教授}
 \researchname{情報アクセス研究}
 \studentid{51XXFXXX}
@@ -42,64 +17,47 @@
 \submitdate{202X年X月XX日}
 
 \begin{document}
-%表紙
-
 \maketitle
 
-%概要
 \begin{coverabstract}
-論文の概要をここに書きます．
+本資料は，日本語の修士論文テンプレートの書式を確認するためのサンプルである．
+情報アクセスシステムの評価を題材として，研究背景，関連研究，評価方法，実験結果の説明を例示する．
+本文中の数値はすべて書式確認用に作成した仮の値であり，実際の実験結果ではない．
+参考文献に含まれる論文の例も架空のものであり，学術的な主張の根拠として利用してはならない．
+
+各章は新しいページから開始するが，奇数ページに限定しない．章の最初のページには下部中央に
+ページ番号を表示し，ページ上部の見出しと横線は表示しない．通常の続きのページでは，
+偶数ページに章の見出し，奇数ページに節の見出しを表示する．第1章には二つの続きページを設け，
+両方のページ上部の表示を比較できるようにした．その他の章にも続きページを設けている．
+本文中の明示的な改ページは表示確認のためのものであり，実際の執筆時には取り除いてよい．
+
+このサンプルには目次，数式，表，図，謝辞，参考文献，付録を含める．図目次と表目次は含めない．
+表紙と概要にはページ番号を表示せず，目次以降では通し番号を表示する．内容を書き換えた際には，
+本文の参照先や図表の配置が正しく更新されていることを，生成したPDFで確認することが望ましい．
 \end{coverabstract}
 
-%目次
 \tableofcontents
-% %図目次
-% \listoffigures
-% %表目次
-% \listoftables
 
-\vspace*{1cm}\par
-% MEMO: chapter -> sectionの順で書いていく
-\chapter{導入}
-\label{sec:introduction}
-導入
+% Example files only: remove these inputs and write your thesis directly here.
+\input{chapters/01-introduction}
+\input{chapters/02-related-work}
+\input{chapters/03-experiments}
+\input{chapters/04-proposed-method}
 
-\chapter{関連研究}
-\label{sec:related_work}
-関連研究\cite{RSL}
+\begin{acknowledgement}
+ここには実際の研究に対する指導，助言，技術的支援などについて謝辞を記載する．
+この段落は書式確認のための例文であり，実際の支援内容や研究費の情報を記述したものではない．
+論文として提出する前に，自身の研究で受けた支援に即した文章に置き換えること．
 
-\chapter{評価実験}
-\begin{equation}
-    loss = -\sum{i}{}\log (y_i)L_i
-\end{equation}
-ただし，$y_i$は...，$L_i$は...．
-
-\insertfigure{waseda_logo}{WASEDA LOGO}{fig:logo_1}{width=3cm}
-図\ref{fig:logo_1}と図\ref{fig:logo_2}は全くの等価．
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=3cm]{waseda_logo.eps}
-  \caption{WASEDA LOGO}
-  \label{fig:logo_2}
-\end{figure}
-
-\chapter{問題点と解決提案手法}
-
-\chapter*{謝辞}
-本論文の執筆にあたり，様々なご指導，ご支援をして頂いた指導教員の酒井哲也教授に深く感謝いたします．また，貴重なご意見，ご提案を頂いた酒井研究室の同級生にもお礼申し上げます．
-\newpage
+謝辞は章番号を付けないが，目次には掲載する．このページでも，通常の章の最初のページと同様に，
+下部中央のページ番号だけを表示する．指導者や協力者に言及する際には，その人が論文の結論を
+承認したと誤解されるような表現を避け，どのような協力を受けたかを具体的に記述するとよい．
+\end{acknowledgement}
 
 \bibliographystyle{unsrt}
-    \bibliography{reference} %"reference.bib"から読み込む
+\bibliography{reference}
 
-% 付録ここから
-% 必要なければ削除
+% Remove this appendix and its input if your thesis does not need an appendix.
 \appendix
-\chapter{実験結果詳細}
-
-\newpage
-
-%
-% 論文の最後
-%
+\input{chapters/appendix-details}
 \end{document}
