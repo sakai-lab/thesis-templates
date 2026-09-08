@@ -1,0 +1,62 @@
+\chapter{Related Work}
+\label{sec:related_work}
+
+\section{Organising the Literature}
+A related-work chapter should help the reader understand why the study makes
+particular methodological choices. One possible organisation separates
+retrieval methods, evaluation resources and analysis procedures. Another
+follows the research questions directly. The choice should make comparisons
+clear rather than simply reproduce the order in which papers were read.
+For each relevant study, the discussion should identify its problem, evidence,
+and relationship to the present work.
+
+The citations in this demonstration illustrate formatting only. The laboratory
+website entry~\cite{RSL} demonstrates a web address in a bibliography. The journal
+entry~\cite{exampleArticle} and conference entry~\cite{exampleConference} are
+fictional and are not sources for the methodological discussion. In a real
+thesis, replace these entries with verified publications and ensure that each
+citation supports the sentence in which it appears.
+
+\section{Comparing Experimental Settings}
+Two studies may use similar ranking methods while evaluating substantially
+different tasks. Differences in collection size, query selection, judgement
+coverage or metric definition can affect the interpretation of their scores.
+A careful comparison therefore reports the experimental setting alongside the
+method. It should avoid treating values from unrelated collections as if they
+were measurements on the same scale under identical conditions.
+
+A compact comparison table can summarise these settings, but the surrounding
+text still needs to explain their significance. For instance, a collection
+containing short factual queries may not reveal the same behaviour as a
+collection of exploratory requests. Such differences can motivate an
+additional experiment without implying that either earlier study was flawed.
+
+% Demonstration-only break; remove for natural pagination in a real thesis.
+\newpage
+\section{Identifying a Research Gap}
+A research gap should be stated in terms that can be investigated. Saying that
+a topic has received limited attention is less specific than identifying an
+unresolved comparison or an untested assumption. In this example, the proposed
+gap concerns whether a change in average retrieval quality is accompanied by
+consistent behaviour across query groups. That statement leads to observable
+quantities and a concrete analysis plan.
+
+The scope of the claim should match the literature that was examined. A thesis
+can explain its search strategy, inclusion criteria and stopping point without
+claiming that every relevant publication has been found. It can also separate
+a practical implementation gap from a conceptual limitation. These distinctions
+help prevent an overly broad novelty claim from obscuring a useful, narrower
+contribution.
+
+\section{Position of the Present Example}
+The proposed comparison uses an established baseline as a reference point and
+changes a single component. The role of related work is to justify that baseline,
+explain reasonable alternatives and identify possible confounding factors.
+A stronger or newer method is not automatically the most informative baseline
+if its data preparation or computational requirements cannot be matched.
+
+The next chapter translates these considerations into a procedure. It defines
+the inputs, the two configurations and the aggregation of per-query scores.
+This transition connects the literature review with the actual experiment,
+so that the reader can see how earlier observations influenced the study
+design rather than encountering an unrelated list of publications.
