@@ -1,35 +1,51 @@
-%pethesis.sty
-% slightly modified for waseda 2013/12/7
-\typeout{pethesis.sty version 1.3.1 Tue, Sep. 2,  2013 by Takashi Michikawa}
-\usepackage{fancyhdr}
-\usepackage{fancybox}
-\usepackage{times}
-\usepackage[T1]{fontenc}
-\usepackage[dvipdfmx]{graphicx}
-\usepackage{subfigure}
- 
+% Based on pethesis.sty v1.3.1 (2013), Takashi Michikawa,
+% with the original Waseda laboratory adaptations.
+\NeedsTeXFormat{LaTeX2e}[2021-06-01]
+\ProvidesPackage{pethesis}[2026/09/08 v2.1 English undergraduate thesis]
+\@ifclassloaded{jsbook}{}{\PackageError{pethesis}{Use the jsbook class}{This style requires pLaTeX and jsbook.}}
+\RequirePackage{fancyhdr}
+\RequirePackage{fancybox}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[scaled=.90]{helvet}
+% Retain the undergraduate template's Times and Courier text fonts.
+\renewcommand{\rmdefault}{ptm}
+\renewcommand{\ttdefault}{pcr}
+\RequirePackage{graphicx}
+\RequirePackage{etoolbox}
+\renewcommand{\headfont}{\normalfont\rmfamily\bfseries}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\listfigurename}{List of Figures}
+\renewcommand{\listtablename}{List of Tables}
+\renewcommand{\figurename}{Fig.\space}
+\renewcommand{\tablename}{Table\space}
+\renewcommand{\bibname}{References}
+\renewcommand{\appendixname}{Appendix\space}
+\renewcommand{\prechaptername}{Chapter\space}
+\renewcommand{\postchaptername}{}
 
-% 1inch = 25.4 mm 
-% A4 210mm×297mm 
-%
-% ページの体裁
-%
-\hoffset=0truemm
-\voffset=0truemm
-\textwidth=166truemm %10pt : 172mm
-\textheight=244truemm % 10pt :243mm
-\oddsidemargin=-3.4truemm
-\evensidemargin=-3.4truemm
-\topmargin=-16.4truemm
-% 表紙用の新変数
-\def\thesistype#1{\gdef\@thesistype{#1}}
-\def\title#1{\gdef\@title{#1}}
-\def\studentid#1{\gdef\@studentid{#1}}
-\def\author#1{\gdef\@author{#1}}
-\def\supervisor#1{\gdef\@supervisor{#1}}
-\def\affiliation#1{\gdef\@affiliation{#1}}
-\def\adjustspace#1{\gdef\@adjustspace{#1}}
+% Preserve the physical text area and offsets of the original template.
+% jsbook's 12pt option uses magnification: retain true units here.
+\setlength{\hoffset}{0truemm}
+\setlength{\voffset}{0truemm}
+\setlength{\textwidth}{166truemm}
+\setlength{\textheight}{244truemm}
+\setlength{\oddsidemargin}{-3.4truemm}
+\setlength{\evensidemargin}{-3.4truemm}
+\setlength{\topmargin}{-16.4truemm}
+% jsbook normally places page numbers in the header, leaving footskip zero.
+% This template uses a footer: reserve a physical gap below the text area.
+\setlength{\footskip}{10truemm}
 
+% Cover values are supplied by the author in bthesis.tex.
+\newcommand{\pethesis@field}[1]{%
+  \expandafter\gdef\csname @#1\endcsname{}%
+  \expandafter\newcommand\csname #1\endcsname[1]{%
+    \expandafter\gdef\csname @#1\endcsname{##1}}}
+\forcsvlist{\pethesis@field}{studentid,supervisor,affiliation,thesistype}
+\newcommand{\pethesis@required}[1]{%
+  \expandafter\ifx\csname @#1\endcsname\@empty
+    \PackageError{pethesis}{Missing required field: #1}{Set the #1 command in bthesis.tex before maketitle.}%
+  \fi}
 \def\triplebox{\VerbBox\@triplebox}
 \def\@triplebox#1{%
   \begingroup
@@ -41,141 +57,111 @@
     \advance\fboxsep .5pt
     \fbox{\setlength{\fboxrule}{.9mm}\fbox{\box\@fancybox}}
   \endgroup}
-  
-\renewcommand\maketitle{
-	\thispagestyle{empty}
-  	\fancypage{\triplebox}
-  	{}
 
-	\begin{center}
-	\vspace*{8truemm}
-	{\gt \@thesistype}\\
-	\vspace*{5truemm}
-	\includegraphics[width=48truemm]{waseda_logo.eps}\\
-	\vspace*{20truemm}
-	        {\gt {\fontsize{26truept}{26pt}\selectfont \@title}} \\
-	\vspace*{82truemm}
-	\vspace*{\@adjustspace}
- 	{\fontsize{18truept}{18pt}\selectfont Supervisor:\quad \@supervisor}\\
- 	\vspace*{17truemm}
- 	\fontsize{16truept}{16pt}\selectfont 
- 	\@affiliation\\
- 	\vspace*{6truemm}
-  	{\fontsize{16truept}{16pt}\selectfont Student ID: \@studentid} \\
- 	\vspace*{9truemm}
-                {\fontsize{20truept}{20pt}\selectfont	\@author}
- 	\vfill	
-	\end{center} 
-	
-	\newpage
-	\fancypage{}{}
-	\cleardoublepage
+
+% Optional fine adjustment retained for existing cover configurations.
+\newcommand{\adjustspace}[1]{\def\@adjustspace{#1}}
+\adjustspace{0pt}
+\renewcommand{\maketitle}{%
+  \forcsvlist{\pethesis@required}{title,author,studentid,supervisor,affiliation,thesistype}%
+  \clearpage\thispagestyle{empty}
+  \fancypage{\triplebox}{}
+  \noindent\vbox to .98\textheight{%
+    \hsize=\textwidth\centering
+    \vspace*{8truemm}
+    {\rmfamily\fontsize{16truept}{20truept}\selectfont\@thesistype\par}
+    \vspace{5truemm}
+    \includegraphics[width=48truemm]{waseda_logo.pdf}\par
+    \vspace{12truemm}
+    {\rmfamily\fontsize{26truept}{30truept}\selectfont\@title\par}
+
+    \vfill\vspace{\@adjustspace}
+    {\fontsize{18truept}{22truept}\selectfont Supervisor:\quad\@supervisor\par}
+    \vspace{10truemm}
+    {\fontsize{16truept}{20truept}\selectfont\@affiliation\par}
+    \vspace{6truemm}
+    {\fontsize{16truept}{20truept}\selectfont Student ID:\quad\@studentid\par}
+    \vspace{6truemm}
+    {\fontsize{20truept}{24truept}\selectfont\@author\par}
+    \vspace{8truemm}}
+  \par\clearpage
+  \fancypage{}{}% Stop the cover frame before the abstract.
 }
 
-%
-% 頭に''概要''と出る
-%
-\newenvironment{coverabstract}{
-\thispagestyle{empty} 
-\vspace*{40truemm} 
-\begin{center} {\bf Abstract}\end{center}
-\begin{minipage}[t]{\textwidth}}{\end{minipage}}
+% Normal paragraph flow allows abstracts longer than one page.
+\newenvironment{coverabstract}{%
+  \clearpage\pagestyle{empty}\thispagestyle{empty}%
+  \vspace*{40truemm}
+  \begin{center}\bfseries\large Abstract\end{center}
+  \noindent\ignorespaces
+}{\par\clearpage}
 
-%枠線作成
-%http://www.biwako.shiga-u.ac.jp/sensei/kumazawa/tex/fancyhdrbook.html
-\pagestyle{fancyplain}
-
-%
-% ページヘッダの制御
-%
-\fancyhead{}
-\fancyhead[RO,RE]{\rightmark}
-\fancyhead[LE,LO]{\leftmark}
-\fancyhead[RE]{\gdef\headrulewidth{.4pt}}
-\fancyhead[LO]{\gdef\headrulewidth{.4pt}}
+% Ordinary pages retain alternating headers; opening pages show only a footer.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\nouppercase{\rightmark}}
 \fancyfoot[C]{\thepage}
-\renewcommand{\chaptermark}[1]{\markboth{\@chapapp\thechapter\@chappos~#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection #1}{}}
+\renewcommand{\headrulewidth}{.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\chaptermark}[1]{%
+  \markboth{\ifnum\c@secnumdepth>\m@ne\if@mainmatter
+    \@chapapp\space\thechapter\quad\fi\fi #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
+% A dedicated opening-page style applies to numbered and unnumbered chapters.
+\fancypagestyle{thesischapter}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}}
+% Patch only the page style; keep the current jsbook chapter implementation.
+\patchcmd{\chapter}{\plainifnotempty}{\thispagestyle{thesischapter}}{}{%
+  \PackageError{pethesis}{Cannot set chapter-opening page style}{The jsbook chapter implementation has changed.}}
 
-    
-%%jsbook では関連図書となるので変更
-\renewcommand{\bibname}{\rmfamily References}
+% jsbook already adds References to the TOC; use its bibliography unchanged.
+\newenvironment{acknowledgement}{%
+  \chapter*{Acknowledgements}
+  \markboth{Acknowledgements}{Acknowledgements}
+  \addcontentsline{toc}{chapter}{Acknowledgements}
+}{\par}
 
-%% (j)report・(j)book クラスの場合
-%% 参考文献が目次に乗るようにする。
-%%http://www.nsknet.or.jp/~tony/TeX/faq/macro.htm
-%% 
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+   {.6\Cvs \@plus.2\Cdp \@minus.2\Cdp}%
+   {.1\Cvs \@plus.1\Cdp}%
+   {\reset@font\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+   {0.2\Cvs \@plus.05\Cdp \@minus.1\Cdp}%
+   {0.01\Cvs \@plus.01\Cdp}%
+   {\reset@font\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+   {0.15\Cvs \@plus.1\Cdp \@minus.1\Cdp}%
+   {0.01\Cvs \@plus.01\Cdp}%
+   {\reset@font\normalsize\bfseries}}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+   {1.5ex \@plus .2ex \@minus .2ex}%
+   {-1em}%
+   {\reset@font\normalsize\bfseries}}
+\renewcommand{\subparagraph}{\@startsection{subparagraph}{5}{\z@}%
+   {1.5ex \@plus .2ex \@minus .2ex}%
+   {-1em}%
+   {\reset@font\normalsize\bfseries}}
 
-\makeatletter
-\renewenvironment{thebibliography}[1]% 再定義
-{\chapter*{\bibname\@mkboth{\bibname}{\bibname}}%
- \addcontentsline{toc}{chapter}{\bibname}% この行追加
-   \list{\@biblabel{\@arabic\c@enumiv}}%
-        {\settowidth\labelwidth{\@biblabel{#1}}%
-         \leftmargin\labelwidth
-         \advance\leftmargin\labelsep
-         \@openbib@code
-         \usecounter{enumiv}%
-         \let\p@enumiv\@empty
-         \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-   \sloppy
-   \clubpenalty4000
-   \@clubpenalty\clubpenalty
-   \widowpenalty4000%
-   \sfcode`\.\@m}
-  {\def\@noitemerr
-    {\@latex@warning{Empty `thebibliography' environment}}%
-   \endlist}
-\makeatother
 
-%
-% \chapterの再定義
-%
-\makeatletter
-\renewcommand{\chapter}{%
-  \if@openright\cleardoublepage\else\clearpage\fi
-%   \thispagestyle{plain}% chapter最初のページ番号をフッタ中央に配置
-    \thispagestyle{empty} %chapter最初のページ番号は振らない
-    \global\@topnum\z@
-  \if@english \@afterindentfalse \else \@afterindenttrue \fi
-  \secdef\@chapter\@schapter
-}
-\makeatother
 
-%謝辞
-\makeatletter
-\newenvironment{acknowledgement}{\renewcommand{\chaptermark}[1]{\markboth{謝辞}{}}\chapter*{謝辞}\addcontentsline{toc}{chapter}{謝辞}}
-{}
-\makeatother
-%
-% 章番号とタイトルに改行を入れない
-%http://anchoret.seesaa.net/article/82436197.html
-%
-\makeatletter
 \def\@makechapterhead#1{
 \vspace*{2\Cvs}
 {\parindent \z@ \raggedright \normalfont
-\Huge\headfont
+\huge \bfseries \headfont
 \ifnum \c@secnumdepth >\m@ne
 \if@mainmatter
 \@chapapp\thechapter\@chappos
-\hskip1zw
+\quad
 \fi
 \fi
+\bigbreak
 #1\par\nobreak
-\vskip 3\Cvs}}
-\makeatother
+\vskip 2\Cvs}}
 
-%
-% \tableofcontentsでtocファイル作成時に\subsection まで索引を作成する。
-%
+% Use the maintained class's TOC implementation (no tocstyle dependency).
 \setcounter{tocdepth}{2}
-%
-% 索引の見出し、ページ番号のドットの間隔を変更
-%
-\makeatletter
-\renewcommand{\@dotsep}{1} % 9/18 em
-\makeatother
-
-
-
+\renewcommand{\@dotsep}{1}
