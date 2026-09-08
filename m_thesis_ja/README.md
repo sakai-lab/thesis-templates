@@ -32,8 +32,8 @@
    このテンプレートでは pdfLaTeX，XeLaTeX，LuaLaTeX を選択しないでください．
 4. **TeX Live version** で現行のバージョンを選び，**Recompile** を実行してください．
    この改訂版では，旧版で指定されていた `2021 (Legacy)` の設定は不要です．
-   ローカルの TeX Live 2023 で動作を確認していますが，
-   Overleaf の TeX Live 2026 ではまだ動作確認を行っていません．
+   ローカルの TeX Live 2023 で動作を確認しています．
+   Overleaf の TeX Live 2026 でも動作確認済み．
 5. 既存のプロジェクトで古いテンプレートを置き換えた場合は，
    **Recompile from scratch** を実行し，コンパイル用のキャッシュを削除してください．
 
@@ -119,8 +119,8 @@ and place the address in `howpublished = {\url{...}}`.
    XeLaTeX, or LuaLaTeX for this template.
 4. Select a current **TeX Live version** and click **Recompile**. This revision
    does not require the original repository's `2021 (Legacy)` setting.
-   It has been tested locally with TeX Live 2023; Overleaf TeX Live 2026
-   has not yet been tested.
+   It has been tested locally with TeX Live 2023;
+   Overleaf TeX Live 2026 has also been tested.
 5. If replacing an older template in an existing project, use
    **Recompile from scratch** to clear cached compilation files.
 
