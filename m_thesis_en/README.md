@@ -27,7 +27,7 @@ Add your bibliography entries to `reference.bib` and replace its example entries
 4. Select a current **TeX Live version** and click **Recompile**. The template
    no longer depends on the obsolete `tocstyle` package or requires the
    `2021 (Legacy)` setting. It has been tested locally with TeX Live 2023;
-   Overleaf TeX Live 2026 has not yet been tested.
+   Overleaf TeX Live 2026 has also been tested.
 5. If you are replacing an older template in an existing project, use
    **Recompile from scratch** to clear cached compilation files.
 
