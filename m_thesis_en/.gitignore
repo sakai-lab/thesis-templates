@@ -1,0 +1,14 @@
+build/
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+*.synctex.gz
+mthesis.pdf

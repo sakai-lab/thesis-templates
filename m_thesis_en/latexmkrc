@@ -1,0 +1,8 @@
+# pLaTeX -> DVI -> PDF. Run from this directory.
+$latex = 'platex -kanji=utf8 -synctex=1 -interaction=nonstopmode -halt-on-error -file-line-error %O %S';
+$bibtex = 'pbibtex -kanji=utf8 %O %S';
+$dvipdf = 'dvipdfmx %O -o %D %S';
+$makeindex = 'mendex -U %O -o %D %S';
+$pdf_mode = 3;
+$max_repeat = 5;
+$clean_ext = 'synctex.gz';

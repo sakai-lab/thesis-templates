@@ -1,0 +1,78 @@
+\chapter{Experiments}
+\label{sec:experiments}
+
+\section{Experimental Configuration}
+This chapter illustrates how to describe an experimental setup. The values
+in Table~\ref{tab:environment} are hypothetical configuration values, not a
+record of an experiment performed for this template. A completed thesis should
+replace them with the actual settings and explain which choices were fixed
+before examining the evaluation results.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Illustrative configuration; no experiment was executed}
+  \label{tab:environment}
+  \begin{tabular}{ll}\hline
+    Component & Example setting\\\hline
+    Candidate set & 100 documents per query\\
+    Evaluation cutoff & First 10 results\\
+    Configurations & Baseline and reranked variant\\
+    Aggregation & Equal weight per query\\
+    Output record & One paired score per query\\\hline
+  \end{tabular}
+\end{table}
+
+\section{Collection and Queries}
+The collection description should identify the document source, any filtering
+steps and the version used in the evaluation. Query selection deserves the
+same level of care. Queries used during development should be distinguished
+from those reserved for the final comparison, and any overlap should be
+reported rather than left implicit.
+
+Table~\ref{tab:datasets} uses invented group sizes to demonstrate a second table
+and its cross-reference. A real report would explain how each group was defined
+and why the distinction is relevant to the research question. It would also
+state whether group membership was assigned before the system outputs were
+examined.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Invented query groups for the formatting example}
+  \label{tab:datasets}
+  \begin{tabular}{lrr}\hline
+    Group & Development queries & Evaluation queries\\\hline
+    Short requests & 20 & 40\\
+    Detailed requests & 20 & 40\\
+    All requests & 40 & 80\\\hline
+  \end{tabular}
+\end{table}
+
+% Flush example floats before the continuation-page demonstration.
+\clearpage
+\section{Execution Procedure}
+Run both configurations with the same prepared inputs and retain their complete
+ranked outputs. The evaluation stage should read those outputs without altering
+the rankings. Separating retrieval from scoring makes it possible to inspect
+a result file, correct an evaluation bug and recompute scores without silently
+changing the retrieval configuration at the same time.
+
+Each run should have an identifier that connects its configuration, output and
+log. A run log can record completion status and unexpected conditions, while
+the configuration file records intended settings. If a run fails or produces
+an incomplete output, resolve the issue before presenting a comparison as a
+complete experiment. The final report should describe consequential deviations
+from the original procedure.
+
+\section{Analysis Plan}
+The first analysis compares mean query scores. The second examines the
+distribution of paired differences, and the third summarises the predefined
+query groups. These analyses answer related questions, but none should be used
+to imply more than it measures. A group summary based on a small number of
+queries may be informative while remaining highly uncertain.
+
+Qualitative inspection can complement these summaries. Select examples using
+a stated rule, such as the largest positive and negative changes, and inspect
+the retrieved documents for plausible explanations. Such examples illustrate
+behaviour; they do not estimate how often that behaviour occurs in the broader
+query population. The next chapter uses a small invented result table to
+show how these distinctions can be written clearly.
